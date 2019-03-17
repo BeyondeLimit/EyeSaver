@@ -7,10 +7,10 @@
 //
 
 import Foundation
-class EyeSaverVM : NSObject{
+class EyeSaverVM: NSObject{
 
     @objc dynamic var change : Bool = true
-    func waitTillPopup(_ index: Int){
+    func waitTillPopup(_ index: Int) {
         var minutes : Int
         switch index {
         case 0:
@@ -29,8 +29,9 @@ class EyeSaverVM : NSObject{
             minutes = 0
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + DispatchTimeInterval.seconds(minutes)) {
-            self.change = !self.change
+        DispatchQueue.main.asyncAfter(deadline: .now() + DispatchTimeInterval.seconds(minutes)) { [weak self] in
+          guard self?.change != nil else { fatalError() }
+          self?.change = !(self?.change)!
         }
     }
 }

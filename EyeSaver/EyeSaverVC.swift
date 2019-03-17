@@ -10,7 +10,7 @@ import Cocoa
 class EyeSaverVC: NSViewController {
     
     @IBOutlet weak var timePopUp: NSPopUpButton!
-    var vm = EyeSaverVM()
+    private var vm = EyeSaverVM()
     
     var observe: NSKeyValueObservation?
     override func viewDidLoad() {
